@@ -15,7 +15,7 @@
             <div class="meta-row"><span class="meta-key">{{ $t('DOB_LABEL') }}:</span><span class="meta-val">5 Juli 2001</span></div>
             <div class="meta-row"><span class="meta-key">{{ $t('NATIONALITY_LABEL') }}:</span><span class="meta-val">{{ $t('NATIONALITY_VALUE') }}</span></div>
             <div class="meta-row"><span class="meta-key">{{ $t('ADDRESS_LABEL') }}:</span><span class="meta-val">{{ $t('ADDRESS_VALUE') }}</span></div>
-          </div>
+                  <img :src="foto1Img" alt="Ikbal Waludi" class="profile-image" @error="handleImageError" />
         </div>
       </div>
 
@@ -68,7 +68,7 @@
       </div>
     </div>
   </div>
-</template>
+                    <img :src="detImg" alt="Duolingo English Test Certificate" class="cert-image-large" @error="handleImageError" />
 
 <script>
 import languageService from '@/services/languageService';
@@ -77,6 +77,10 @@ export default {
   name: 'PortfolioPage',
   methods: {
     $t(key) {
+        import languageService from '@/services/languageService';
+        import foto1Img from '@/assets/foto1.jpeg';
+        import detImg from '@/assets/DET.jpeg';
+        import rojaliImg from '@/assets/Rojali.png';
       return languageService.t(key);
     },
     handleImageError(event) {
@@ -86,7 +90,7 @@ export default {
   }
 }
 </script>
-
+              event.target.src = rojaliImg;
 <style scoped>
 .portfolio-container {
   position: relative;

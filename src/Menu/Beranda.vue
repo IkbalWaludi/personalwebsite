@@ -102,6 +102,7 @@
 
 <script>
 import languageService from '@/services/languageService';
+import fotoImg from '@/assets/foto.png';
 
 export default {
   name: 'BerandaPage',
@@ -110,7 +111,7 @@ export default {
       personalInfo: {
         name: 'Ikbal Waludi',
         role: 'Game Developer / Animator',
-        image: '/src/assets/foto.png', // Your profile photo
+        image: fotoImg, // Your profile photo
         bio: 'Creative generalist passionate about game development, animation, and interactive media',
         contact: {
           email: 'ikbalwwaludi@gmail.com',
@@ -126,7 +127,7 @@ export default {
   methods: {
     handleImageError(event) {
       // Fallback to profile photo
-      event.target.src = '/src/assets/foto.png';
+      event.target.src = fotoImg;
     },
     $t(key) {
       return languageService.t(key);

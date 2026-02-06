@@ -56,6 +56,8 @@
 
 <script>
 import languageService from '@/services/languageService';
+import tiktokImg from '@/assets/tiktok.png';
+import rojaliImg from '@/assets/Rojali.png';
 
 export default {
   name: 'ProjectsPage',
@@ -104,7 +106,7 @@ export default {
             ID: 'Menjaga portofolio publik di TikTok yang fokus pada karya kreatif dan rapid prototyping, memanfaatkan keahlian saya di animasi 2D/3D dan pengembangan game cepat. Platform ini menampilkan berbagai prototipe game dan animasi serta membuktikan kemampuan storytelling visual dan kualitas produksi saya.'
           },
           tech: ['TikTok', '2D/3D Animation', 'Game Prototyping', 'Content Creation'],
-          image: '/src/assets/tiktok.png',
+          image: tiktokImg,
           demo: 'https://www.tiktok.com/@kebalikstudio'
         }
       ]
@@ -129,7 +131,7 @@ export default {
     },
     handleProjectImageError(event) {
       // Fallback to a default image
-      event.target.src = '/src/assets/Rojali.png';
+      event.target.src = rojaliImg;
     },
     getYoutubeEmbedUrl(url) {
       // Convert YouTube watch URL to embed URL

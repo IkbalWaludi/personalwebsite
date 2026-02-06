@@ -16,11 +16,11 @@
         @click="toggleLanguage()"
         :title="currentLanguage === 'EN' ? 'Switch to Indonesian' : 'Switch to English'"
       >
-        <img 
-          :src="currentLanguage === 'EN' ? '/src/assets/eng.png' : '/src/assets/ind.png'" 
-          :alt="currentLanguage === 'EN' ? 'English' : 'Indonesian'" 
+        <img
+          :src="currentLanguage === 'EN' ? engFlag : indFlag"
+          :alt="currentLanguage === 'EN' ? 'English' : 'Indonesian'"
           class="flag-icon"
-        >
+        />
       </button>
       
       <!-- Small phone icon toggle in bottom left corner -->
@@ -38,6 +38,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import PhoneMockup from "@/components/PhoneMockup.vue";
 import languageService from '@/services/languageService';
+import engFlag from '@/assets/eng.png'
+import indFlag from '@/assets/ind.png'
 
 const showMockup = ref(true);
 const currentLanguage = ref(languageService.getCurrentLanguage());
