@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Game Vertikal - Ikon Kontras Tinggi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Gaya Global dan Latar Belakang Game --- */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a; 
+            background-image: radial-gradient(#333 1px, transparent 0);
+            background-size: 40px 40px;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .game-navbar {
+            /* Navbar Vertikal */
+            display: flex;
+            flex-direction: column; 
+            gap: 15px; 
+            padding: 20px 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            border: 2px solid #555;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- CSS Tombol Game: Logam Emas Persegi --- */
+        .game-3d-button {
+            /* Desain Ukuran dan Layout */
+            position: relative;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            width: 80px; 
+            height: 80px; 
+            
+            word-wrap: break-word; 
+            
+            /* Warna dan Gradien Logam */
+            background: linear-gradient(180deg, #ffcc00 0%, #b8860b 100%); 
+            color: #4f2c00; /* Warna teks gelap */
+            
+            font-size: 8px; 
+            font-weight: 900;
+            line-height: 1.05; 
+            letter-spacing: 0.2px; 
+            padding: 0 5px; 
+
+            border: 3px solid #ffaa00; 
+            border-radius: 10px; 
+            cursor: pointer;
+            outline: none;
+            
+            text-shadow: 
+                0 -1px 0 #ffd700, 
+                0 1px 0 #8b4513; 
+            
+            transition: transform 0.1s, box-shadow 0.1s;
+            
+            /* Efek 3D */
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.4), 
+                0 6px 0 0 #a0522d, 
+                0 8px 15px rgba(0, 0, 0, 0.6); 
+            transform: translateY(0);
+        }
+
+        .game-3d-button .icon {
+            /* Perubahan Fokus: Membuat Ikon Sangat Kontras */
+            margin-bottom: 3px; 
+            font-size: 38px; 
+            
+            /* 1. Warna Ikon Putih Murni untuk Kontras Maksimal */
+            color: #ffffff; 
+            
+            /* 2. Shadow Ganda untuk Efek 3D dan Glow */
+            text-shadow: 
+                0 0 4px #000000, /* Bayangan gelap di bawah (membuatnya 'pop') */
+                0 0 10px #ffffff; /* Glow putih yang kuat */
+        }
+        
+        /* State Hover dan Active (Tidak Berubah Signifikan) */
+        .game-3d-button:hover {
+            background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%);
+            border-color: #ffffff;
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                0 7px 0 0 #8b4513, 
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .game-3d-button:active {
+            background: linear-gradient(180deg, #b8860b 0%, #ffcc00 100%); 
+            border-color: #ffaa00;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5), 
+                0 1px 0 0 #a0522d, 
+                0 2px 5px rgba(0, 0, 0, 0.4); 
+            transform: translateY(6px); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-navbar">
+        <button class="game-3d-button">
+            <i class="icon fas fa-home"></i>
+            MARKAS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-cog"></i>
+            SETTINGS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-coins"></i>
+            CREDIT
+        </button>
+        
+        <button class="game-3d-button">
+            <i class="icon fas fa-bolt"></i>
+            POWERUPS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-trophy"></i>
+            ACHIEVE<br>MENTS
+        </button>
+    </div>
+
+</body>
+</html>

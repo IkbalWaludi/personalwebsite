@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Game Vertikal - Tombol Start RPG (Dagger Icon)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        /* --- Gaya Global dan Latar Belakang Game --- */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            background-image: radial-gradient(#333 1px, transparent 0);
+            background-size: 40px 40px;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .game-navbar {
+            /* Navbar Vertikal */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            border: 2px solid #555;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- CSS Tombol Game: Logam Emas Persegi (Tidak Berubah) --- */
+        .game-3d-button {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            word-wrap: break-word;
+            background: linear-gradient(180deg, #ffcc00 0%, #b8860b 100%);
+            color: #4f2c00;
+            font-size: 8px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: 0.2px;
+            padding: 0 5px;
+            border: 3px solid #ffaa00;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            text-shadow:
+                0 -1px 0 #ffd700,
+                0 1px 0 #8b4513;
+            transition: transform 0.1s, box-shadow 0.1s;
+            box-shadow:
+                inset 0 2px 5px rgba(255, 255, 255, 0.4),
+                0 6px 0 0 #a0522d,
+                0 8px 15px rgba(0, 0, 0, 0.6);
+            transform: translateY(0);
+        }
+
+        .game-3d-button .icon {
+            margin-bottom: 3px;
+            font-size: 38px;
+            color: #ffffff;
+            text-shadow:
+                0 0 4px #000000,
+                0 0 10px #ffffff;
+        }
+        
+        /* State Hover dan Active (Tidak Berubah Signifikan) */
+        .game-3d-button:hover {
+            background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%);
+            border-color: #ffffff;
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                0 7px 0 0 #8b4513, 
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .game-3d-button:active {
+            background: linear-gradient(180deg, #b8860b 0%, #ffcc00 100%); 
+            border-color: #ffaa00;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5), 
+                0 1px 0 0 #a0522d, 
+                0 2px 5px rgba(0, 0, 0, 0.4); 
+            transform: translateY(6px); 
+        }
+
+        /* --- Tombol Start 1/4 Lingkaran (Kanan Bawah) --- */
+        .start-button {
+            /* Posisi Tetap di Kanan Bawah */
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 10; 
+
+            /* Desain Bentuk 1/4 Lingkaran */
+            width: 150px;
+            height: 150px;
+            border-top-left-radius: 100%; 
+
+            /* Warna dan Efek */
+            background: linear-gradient(to top left, #a52a2a 0%, #8b0000 100%);
+            border: 5px solid #ff4500;
+            box-shadow: 0 0 25px #ff4500, inset 0 0 10px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            overflow: hidden;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .start-button:hover {
+            background: linear-gradient(to top left, #cd5c5c 0%, #a52a2a 100%);
+            border-color: #ffa07a;
+            box-shadow: 0 0 35px #ffa07a, inset 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+        
+        .start-button:active {
+            background: linear-gradient(to top left, #8b0000 0%, #a52a2a 100%);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .start-button .content {
+            /* MENGATUR POSISI DI TENGAH 1/4 LINGKARAN */
+            position: absolute;
+            bottom: 50%;
+            right: 50%;
+            transform: translate(50%, 50%);
+            
+            text-align: center;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 900;
+            text-shadow: 0 0 5px #000000, 0 0 10px #ff0000;
+            /* Font gaya RPG */
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .start-button .icon {
+            font-size: 40px;
+            margin-bottom: 5px;
+            color: #ffffff; 
+            text-shadow: 0 0 10px #000000, 0 0 20px #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-navbar">
+        <button class="game-3d-button">
+            <i class="icon fas fa-home"></i>
+            MARKAS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-cog"></i>
+            SETTINGS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-coins"></i>
+            CREDIT
+        </button>
+        
+        <button class="game-3d-button">
+            <i class="icon fas fa-bolt"></i>
+            POWERUPS
+        </button>
+
+        <button class="game-3d-button">
+            <i class="icon fas fa-trophy"></i>
+            ACHIEVE<br>MENTS
+        </button>
+    </div>
+    
+    <button class="start-button">
+        <div class="content">
+            <i class="icon fas fa-dagger"></i>
+            <div>START</div>
+        </div>
+    </button>
+
+</body>
+</html>

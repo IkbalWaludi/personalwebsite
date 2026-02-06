@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Menu Game Mobile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      font-family: "Montserrat", sans-serif;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* --- LAYOUT UTAMA --- */
+    .game-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+    }
+
+    /* --- NAVBAR KIRI (VERTIKAL) --- */
+    .sidebar {
+      width: 90px;
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: blur(6px);
+      border-right: 2px solid #2c2c2c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 25px;
+      gap: 25px;
+    }
+
+    .nav-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: #161616;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #333;
+      transition: 0.2s;
+    }
+
+    .nav-btn:hover {
+      transform: scale(1.08);
+      border-color: #7aff7a;
+      box-shadow: 0 0 12px #7aff7a66;
+      cursor: pointer;
+    }
+
+    .nav-btn svg {
+      width: 32px;
+      height: 32px;
+      fill: #cfcfcf;
+    }
+
+    /* --- AREA KONTEN UTAMA --- */
+    .main-content {
+      flex: 1;
+      position: relative;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .game-title {
+      font-size: 54px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #f5f5f5;
+      text-shadow: 0 0 20px #7aff7a99;
+    }
+
+    /* --- TOMBOL START DI POJOK KANAN BAWAH --- */
+    .start-btn {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      background: #ffd447;
+      color: #000;
+      padding: 18px 40px;
+      border-radius: 18px;
+      font-size: 28px;
+      font-weight: 800;
+      border: 3px solid #000;
+      box-shadow: 0 0 12px #ffd447aa;
+      transition: 0.2s;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 20px #ffd447ff;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="game-container">
+
+  <!-- SIDEBAR/NAVBAR KIRI -->
+  <div class="sidebar">
+    <div class="nav-btn">🏠</div>
+    <div class="nav-btn">⚔️</div>
+    <div class="nav-btn">📘</div>
+    <div class="nav-btn">🧮</div>
+    <div class="nav-btn">⚙️</div>
+  </div>
+
+  <!-- KONTEN UTAMA -->
+  <div class="main-content">
+    <h1 class="game-title">ELEGANT BRUTALITY</h1>
+  </div>
+
+  <!-- TOMBOL START -->
+  <div class="start-btn">START</div>
+
+</div>
+
+</body>
+</html>

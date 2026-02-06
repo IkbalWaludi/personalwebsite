@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Navbar 3D - States Only</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Patrick Hand', cursive, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR KIRI (VERTIKAL) --- */
+        .sidebar {
+            width: 7.5vw;
+            min-width: 100px;
+            background: white;
+            backdrop-filter: blur(6px);
+            border-right: 2px solid #2c2c2c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            height: 100vh;
+            justify-content: center;
+            gap: 2vh;
+            position: relative;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- CSS Tombol Game: Logam Emas Persegi --- */
+        .game-3d-button {
+            /* Desain Ukuran dan Layout */
+            position: relative;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            width: 5.25vw; 
+            min-width: 60px;
+            height: 4.5vw; 
+            min-height: 60px;
+            
+            /* Warna dan Gradien Logam */
+            background: linear-gradient(180deg, #ffcc00 0%, #b8860b 100%); 
+            color: #4f2c00; /* Warna teks gelap */
+            
+            font-family: 'Patrick Hand', 'Handlee', cursive, sans-serif;
+            font-size: 0.7vw; 
+            font-weight: 900;
+            line-height: 1.05; 
+            letter-spacing: 0.2px; 
+            padding: 0 5px; 
+
+            border: 3px solid #ffaa00; 
+            border-radius: 10px; 
+            cursor: default;
+            outline: none;
+            
+            text-shadow: 
+                0 -1px 0 #ffd700, 
+                0 1px 0 #8b4513; 
+            
+            transition: transform 0.1s, box-shadow 0.1s;
+            
+            /* Efek 3D */
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.4), 
+                0 6px 0 0 #a0522d, 
+                0 8px 15px rgba(0, 0, 0, 0.6); 
+            transform: translateY(0);
+            
+            text-decoration: none;
+        }
+
+        /* Hovered state */
+        .game-3d-button.hovered {
+            background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%);
+            border-color: #ffffff;
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                0 7px 0 0 #8b4513, 
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            transform: translateY(-1px);
+        }
+
+        /* Pushed state */
+        .game-3d-button.pushed {
+            background: linear-gradient(180deg, #b8860b 0%, #ffcc00 100%); 
+            border-color: #ffaa00;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5), 
+                0 1px 0 0 #a0522d, 
+                0 2px 5px rgba(0, 0, 0, 0.4); 
+            transform: translateY(6px); 
+        }
+
+        /* Active state */
+        .game-3d-button.active {
+            background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%);
+            border-color: #ffffff;
+            box-shadow: 
+                inset 0 2px 5px rgba(255, 255, 255, 0.6),
+                0 7px 0 0 #8b4513, 
+                0 10px 20px rgba(0, 0, 0, 0.8);
+            transform: translateY(-1px);
+        }
+
+        /* Icon styles */
+        .game-3d-button .icon {
+            /* Perubahan Fokus: Membuat Ikon Sangat Kontras */
+            margin-bottom: 3px; 
+            font-size: 2vw; 
+            
+            /* 1. Warna Ikon Putih Murni untuk Kontras Maksimal */
+            color: #ffffff; 
+            
+            /* 2. Shadow Ganda untuk Efek 3D dan Glow */
+            text-shadow: 
+                0 0 4px #000000, /* Bayangan gelap di bawah (membuatnya 'pop') */
+                0 0 10px #ffffff; /* Glow putih yang kuat */
+        }
+
+        /* Button label styles */
+        .btn-label {
+            word-wrap: break-word;
+            text-align: center;
+            font-family: 'Patrick Hand', 'Handlee', cursive, sans-serif;
+            font-size: 0.9rem;
+        }
+
+        /* Dropdown styles */
+        .dropdown-control {
+            margin-bottom: 1vh;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 7.5vw;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1vh;
+            background: rgba(30, 30, 30, 0.95);
+            border: 2px solid #2c2c2c;
+            border-radius: 10px;
+            padding: 1vh;
+            z-index: 99;
+            width: 6vw;
+            min-width: 80px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .dropdown-item {
+            width: 100%;
+            height: 3vw;
+            min-height: 40px;
+            font-size: 0.6vw;
+            cursor: pointer;
+        }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .current-state {
+            background: rgba(255, 204, 0, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+            margin-top: 1rem;
+        }
+
+        .state-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .state-idle { background: linear-gradient(180deg, #ffcc00 0%, #b8860b 100%); }
+        .state-hovered { background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%); }
+        .state-pushed { background: linear-gradient(180deg, #b8860b 0%, #ffcc00 100%); }
+        .state-active { background: linear-gradient(180deg, #ffdd33 0%, #daa520 100%); }
+
+        .instructions {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #ffcc00;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+            }
+            
+            .game-3d-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .btn-label {
+                font-size: 0.7rem;
+            }
+            
+            .game-3d-button .icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Dropdown button to control states -->
+        <div class="dropdown-control game-3d-button" id="dropdownControl">
+            <i class="icon fas fa-sliders-h"></i>
+            <span class="btn-label">States</span>
+        </div>
+        
+        <!-- Dropdown menu -->
+        <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
+            <div class="dropdown-item game-3d-button" data-state="idle">
+                <span class="btn-label">Idle</span>
+            </div>
+            <div class="dropdown-item game-3d-button" data-state="hovered">
+                <span class="btn-label">Hovered</span>
+            </div>
+            <div class="dropdown-item game-3d-button" data-state="pushed">
+                <span class="btn-label">Pushed</span>
+            </div>
+        </div>
+
+        <!-- Navigation buttons - no individual interaction -->
+        <div class="nav-btn game-3d-button" data-page="beranda">
+            <i class="icon fas fa-home"></i>
+            <span class="btn-label">HOME</span>
+        </div>
+        
+        <div class="nav-btn game-3d-button" data-page="profil">
+            <i class="icon fas fa-cog"></i>
+            <span class="btn-label">SETTINGS</span>
+        </div>
+        
+        <div class="nav-btn game-3d-button" data-page="credit">
+            <i class="icon fas fa-circle-exclamation"></i>
+            <span class="btn-label">ABOUT</span>
+        </div>
+        
+        <div class="nav-btn game-3d-button" data-page="powerups">
+            <i class="icon fas fa-bolt"></i>
+            <span class="btn-label">POWERUPS</span>
+        </div>
+        
+        <div class="nav-btn game-3d-button" data-page="achievements">
+            <i class="icon fas fa-trophy"></i>
+            <span class="btn-label">ACHIEVEMENTS</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Game Navbar 3D - States Demo</h1>
+        <p>This navbar demonstrates the 3D button states without any individual button interaction.</p>
+        <p>Use the "States" dropdown to change the appearance of all buttons simultaneously.</p>
+        
+        <div class="current-state">
+            <h3>Current State: <span id="currentStateDisplay">Idle</span></h3>
+            <p>Individual button clicks are disabled</p>
+            <div>
+                <span class="state-indicator state-idle"></span> Idle
+                <span class="state-indicator state-hovered"></span> Hovered
+                <span class="state-indicator state-pushed"></span> Pushed
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Instructions</h3>
+            <p>• Click the "States" button to open the dropdown</p>
+            <p>• Select a state to apply it to all navigation buttons</p>
+            <p>• Individual navigation buttons cannot be clicked</p>
+            <p>• No hover effects on navigation buttons</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // State management
+            const buttonStates = {
+                beranda: 'idle',
+                profil: 'idle',
+                credit: 'idle',
+                powerups: 'idle',
+                achievements: 'idle'
+            };
+            
+            let currentView = 'idle';
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const currentStateDisplay = document.getElementById('currentStateDisplay');
+            
+            // Dropdown control - only interactive element
+            document.getElementById('dropdownControl').addEventListener('click', function() {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'flex' : 'none';
+            });
+            
+            // Dropdown items
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const state = this.getAttribute('data-state');
+                    setStateAndView(state);
+                });
+            });
+            
+            // Navigation buttons - NO event listeners for individual interaction
+            // They are completely non-interactive
+            
+            // Functions
+            function setAllButtonsState(state) {
+                Object.keys(buttonStates).forEach(key => {
+                    buttonStates[key] = state;
+                });
+                
+                // Update visual state for all navigation buttons
+                document.querySelectorAll('.nav-btn').forEach(button => {
+                    const page = button.getAttribute('data-page');
+                    updateButtonClass(button, page);
+                });
+            }
+            
+            function setStateAndView(state) {
+                setAllButtonsState(state);
+                currentView = state;
+                dropdownMenu.style.display = 'none';
+                currentStateDisplay.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+            }
+            
+            function updateButtonClass(button, buttonName) {
+                // Remove all state classes
+                button.classList.remove('hovered', 'pushed', 'active');
+                
+                // Add appropriate class based on state
+                const state = buttonStates[buttonName];
+                if (state === 'hovered') {
+                    button.classList.add('hovered');
+                } else if (state === 'pushed') {
+                    button.classList.add('pushed');
+                }
+                // Note: 'active' class is not used since there's no individual selection
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown-control') && !e.target.closest('.dropdown-menu')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
